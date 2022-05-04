@@ -1,5 +1,5 @@
 locals {
-  user_data = templatefile("${path.module}/config/cloud-config.yml.tpl", {
+  user_data = templatefile("${path.module}/templates/cloud-config.yml.tpl", {
     kubernetes_ca        = tls_private_key.kubernetes_ca
     kubernetes_ca_certs  = tls_self_signed_cert.kubernetes_ca_certs
     terraform_user       = tls_private_key.terraform_user
@@ -8,15 +8,17 @@ locals {
 }
 
 data "template_file" "cloud_config" {
+  count    = !var.ha ? 1 : 0
   template = local.user_data
 }
 
 resource "openstack_compute_instance_v2" "kubernetes_cluster" {
-  name            = "kypo-kubernetes-cluster"
+  count           = !var.ha ? 1 : 0
+  name            = "${terraform.workspace}-kubernetes-cluster"
   flavor_name     = var.flavor_name
   image_id        = var.image_id
   key_pair        = var.key_pair
-  user_data       = data.template_file.cloud_config.rendered
+  user_data       = data.template_file.cloud_config[0].rendered
   security_groups = [var.security_group]
 
   network {
@@ -24,12 +26,13 @@ resource "openstack_compute_instance_v2" "kubernetes_cluster" {
   }
 }
 
-resource "null_resource" "provision" {
+resource "null_resource" "provision_cluster" {
+  count = !var.ha ? 1 : 0
   connection {
     type        = "ssh"
     user        = "ubuntu"
     private_key = var.private_key
-    host        = openstack_networking_floatingip_v2.kubernetes_cluster_fip.address
+    host        = openstack_networking_floatingip_v2.kubernetes_cluster_fip[0].address
   }
 
   provisioner "remote-exec" {
@@ -44,10 +47,12 @@ resource "null_resource" "provision" {
 }
 
 resource "openstack_networking_floatingip_v2" "kubernetes_cluster_fip" {
-  pool = var.external_network_name
+  count = !var.ha ? 1 : 0
+  pool  = var.external_network_name
 }
 
 resource "openstack_compute_floatingip_associate_v2" "kubernetes_cluster_fip_association" {
-  floating_ip = openstack_networking_floatingip_v2.kubernetes_cluster_fip.address
-  instance_id = openstack_compute_instance_v2.kubernetes_cluster.id
+  count       = !var.ha ? 1 : 0
+  floating_ip = openstack_networking_floatingip_v2.kubernetes_cluster_fip[0].address
+  instance_id = openstack_compute_instance_v2.kubernetes_cluster[0].id
 }

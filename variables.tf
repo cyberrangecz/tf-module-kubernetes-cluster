@@ -8,6 +8,12 @@ variable "flavor_name" {
   description = "OpenStack flavor used by KYPO kubernetes cluster instance"
 }
 
+variable "ha" {
+  type        = bool
+  description = "Deploy cluster with 3 nodes in HA"
+  default     = false
+}
+
 variable "image_id" {
   type        = string
   description = "OpenStack image ID used by KYPO kubernetes cluster instance"
@@ -26,6 +32,12 @@ variable "network_id" {
 variable "private_key" {
   type        = string
   description = "Private key of ubuntu user on KYPO kubernetes cluster instance"
+}
+
+variable "proxy_host" {
+  type        = string
+  description = "FQDN/IP address of proxy-jump host. Set only for HA setup."
+  default     = ""
 }
 
 variable "security_group" {
