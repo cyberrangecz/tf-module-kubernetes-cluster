@@ -3,18 +3,18 @@ clusters:
 - cluster:
     insecure-skip-tls-verify: true
     server: https://${server}:6443
-  name: kypo
+  name: ${workspace}
 contexts:
 - context:
-    cluster: kypo
+    cluster: ${workspace}
     namespace: kypo
-    user: kypo
-  name: kypo
-current-context: kypo
+    user: ${workspace}
+  name: ${workspace}
+current-context: ${workspace}
 kind: Config
 preferences: {}
 users:
-- name: kypo
+- name: ${workspace}
   user:
     client-certificate-data: ${client_certificate_data}
     client-key-data: ${client_key_data}
