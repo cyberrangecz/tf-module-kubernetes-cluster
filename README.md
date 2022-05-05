@@ -32,9 +32,18 @@ No modules.
 | [openstack_compute_instance_v2.node_add](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
 | [openstack_compute_instance_v2.node_first](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
 | [openstack_lb_listener_v2.listener_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
+| [openstack_lb_listener_v2.listener_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
+| [openstack_lb_listener_v2.listener_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
 | [openstack_lb_loadbalancer_v2.lb](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_loadbalancer_v2) | resource |
 | [openstack_lb_members_v2.members_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_members_v2) | resource |
+| [openstack_lb_members_v2.members_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_members_v2) | resource |
+| [openstack_lb_members_v2.members_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_members_v2) | resource |
+| [openstack_lb_monitor_v2.monitor_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_monitor_v2) | resource |
+| [openstack_lb_monitor_v2.monitor_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_monitor_v2) | resource |
+| [openstack_lb_monitor_v2.monitor_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_monitor_v2) | resource |
 | [openstack_lb_pool_v2.pool_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_pool_v2) | resource |
+| [openstack_lb_pool_v2.pool_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_pool_v2) | resource |
+| [openstack_lb_pool_v2.pool_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_pool_v2) | resource |
 | [openstack_networking_floatingip_v2.kubernetes_cluster_fip](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_floatingip_v2) | resource |
 | [random_password.token](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [tls_cert_request.terraform_user](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/cert_request) | resource |
@@ -43,6 +52,8 @@ No modules.
 | [tls_private_key.terraform_user](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 | [tls_self_signed_cert.kubernetes_ca_certs](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/self_signed_cert) | resource |
 | [openstack_networking_network_v2.network](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/data-sources/networking_network_v2) | data source |
+| [openstack_networking_secgroup_v2.head_sg](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/data-sources/networking_secgroup_v2) | data source |
+| [openstack_networking_subnet_v2.subnet](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/data-sources/networking_subnet_v2) | data source |
 | [template_file.cloud_config](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.cloud_config_add](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.cloud_config_first](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
