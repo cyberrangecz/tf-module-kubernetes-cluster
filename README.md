@@ -9,6 +9,7 @@
 
 | Name | Version |
 |------|---------|
+| <a name="provider_local"></a> [local](#provider\_local) | n/a |
 | <a name="provider_null"></a> [null](#provider\_null) | n/a |
 | <a name="provider_openstack"></a> [openstack](#provider\_openstack) | n/a |
 | <a name="provider_random"></a> [random](#provider\_random) | n/a |
@@ -23,6 +24,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [local_file.kubectl_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [null_resource.provision_cluster](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [null_resource.provision_first](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [openstack_compute_floatingip_associate_v2.kubernetes_cluster_fip_association](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_floatingip_associate_v2) | resource |
