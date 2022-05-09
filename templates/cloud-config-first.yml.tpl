@@ -12,7 +12,7 @@ runcmd:
   - mkdir -p /var/opt/kypo/kypo-ansible-runner-volumes
   - apt update
   - apt install nfs-common docker.io -y
-  - curl -sfL https://get.k3s.io | K3S_TOKEN=${secret} INSTALL_K3S_EXEC="server --cluster-init --docker" sh -s -
+  - curl -sfL https://get.k3s.io | K3S_RESOLV_CONF=/run/systemd/resolve/resolv.conf K3S_TOKEN=${secret} INSTALL_K3S_EXEC="server --cluster-init --docker" sh -s -
 
 write_files:
   - path: /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
