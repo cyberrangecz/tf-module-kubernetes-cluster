@@ -172,3 +172,55 @@ resource "openstack_lb_monitor_v2" "monitor_6443" {
   timeout     = 10
   max_retries = 5
 }
+
+resource "openstack_lb_listener_v2" "listener_515" {
+  count           = var.ha ? 1 : 0
+  name            = "${terraform.workspace}-kubernetes-cluster-515"
+  protocol        = "TCP"
+  protocol_port   = 515
+  loadbalancer_id = openstack_lb_loadbalancer_v2.lb[0].id
+}
+
+resource "openstack_lb_pool_v2" "pool_515" {
+  count       = var.ha ? 1 : 0
+  name        = "${terraform.workspace}-kubernetes-cluster-515"
+  protocol    = "TCP"
+  lb_method   = "ROUND_ROBIN"
+  listener_id = openstack_lb_listener_v2.listener_515[0].id
+}
+
+resource "openstack_lb_members_v2" "members_515" {
+  count   = var.ha ? 1 : 0
+  pool_id = openstack_lb_pool_v2.pool_515[0].id
+
+  member {
+    name          = "${terraform.workspace}-kubernetes-cluster-515-1"
+    address       = openstack_compute_instance_v2.node_first[0].access_ip_v4
+    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
+    protocol_port = 515
+  }
+
+  member {
+    name          = "${terraform.workspace}-kubernetes-cluster-515-2"
+    address       = openstack_compute_instance_v2.node_add[0].access_ip_v4
+    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
+    protocol_port = 515
+  }
+
+  member {
+    name          = "${terraform.workspace}-kubernetes-cluster-515-3"
+    address       = openstack_compute_instance_v2.node_add[1].access_ip_v4
+    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
+    protocol_port = 515
+  }
+}
+
+resource "openstack_lb_monitor_v2" "monitor_515" {
+  count       = var.ha ? 1 : 0
+  name        = "${terraform.workspace}-kubernetes-cluster-515"
+  pool_id     = openstack_lb_pool_v2.pool_515[0].id
+  type        = "TCP"
+  delay       = 20
+  timeout     = 10
+  max_retries = 5
+}
