@@ -13,17 +13,17 @@ output "kubernetes_certificate" {
   description = "Public key of Kubernetes user"
 }
 
-output "node_1_ip" {
+output "node_0_ip" {
   value       = var.ha ? openstack_compute_instance_v2.node_first[0].access_ip_v4 : null
   description = "Internal IP of the first node in HA setup"
 }
 
-output "node_2_ip" {
+output "node_1_ip" {
   value       = var.ha ? openstack_compute_instance_v2.node_add[0].access_ip_v4 : null
   description = "Internal IP of the second node in HA setup"
 }
 
-output "node_3_ip" {
+output "node_2_ip" {
   value       = var.ha ? openstack_compute_instance_v2.node_add[1].access_ip_v4 : null
   description = "Internal IP of the third node in HA setup"
 }
