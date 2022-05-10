@@ -27,6 +27,12 @@ data "template_file" "cloud_config_first" {
   template = local.user_data_first
 }
 
+resource "openstack_compute_servergroup_v2" "server_group" {
+  count    = var.ha ? 1 : 0
+  name     = "${terraform.workspace}-server-group"
+  policies = ["soft-anti-affinity"]
+}
+
 resource "openstack_compute_instance_v2" "node_first" {
   count           = var.ha ? 1 : 0
   name            = "${terraform.workspace}-kubernetes-node-0"
@@ -38,6 +44,10 @@ resource "openstack_compute_instance_v2" "node_first" {
 
   network {
     uuid = var.network_id
+  }
+
+  scheduler_hints {
+    group = openstack_compute_servergroup_v2.server_group[0].id
   }
 }
 
@@ -74,6 +84,10 @@ resource "openstack_compute_instance_v2" "node_add" {
 
   network {
     uuid = var.network_id
+  }
+
+  scheduler_hints {
+    group = openstack_compute_servergroup_v2.server_group[0].id
   }
 
   depends_on = [
