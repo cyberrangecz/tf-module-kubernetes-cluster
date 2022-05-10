@@ -31,17 +31,22 @@ No modules.
 | [openstack_compute_instance_v2.kubernetes_cluster](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
 | [openstack_compute_instance_v2.node_add](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
 | [openstack_compute_instance_v2.node_first](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
+| [openstack_compute_servergroup_v2.server_group](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_servergroup_v2) | resource |
 | [openstack_lb_listener_v2.listener_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
+| [openstack_lb_listener_v2.listener_515](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
 | [openstack_lb_listener_v2.listener_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
 | [openstack_lb_listener_v2.listener_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
 | [openstack_lb_loadbalancer_v2.lb](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_loadbalancer_v2) | resource |
 | [openstack_lb_members_v2.members_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_members_v2) | resource |
+| [openstack_lb_members_v2.members_515](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_members_v2) | resource |
 | [openstack_lb_members_v2.members_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_members_v2) | resource |
 | [openstack_lb_members_v2.members_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_members_v2) | resource |
 | [openstack_lb_monitor_v2.monitor_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_monitor_v2) | resource |
+| [openstack_lb_monitor_v2.monitor_515](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_monitor_v2) | resource |
 | [openstack_lb_monitor_v2.monitor_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_monitor_v2) | resource |
 | [openstack_lb_monitor_v2.monitor_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_monitor_v2) | resource |
 | [openstack_lb_pool_v2.pool_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_pool_v2) | resource |
+| [openstack_lb_pool_v2.pool_515](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_pool_v2) | resource |
 | [openstack_lb_pool_v2.pool_6443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_pool_v2) | resource |
 | [openstack_lb_pool_v2.pool_80](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_pool_v2) | resource |
 | [openstack_networking_floatingip_v2.kubernetes_cluster_fip](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_floatingip_v2) | resource |
@@ -79,7 +84,7 @@ No modules.
 | <a name="output_cluster_ip"></a> [cluster\_ip](#output\_cluster\_ip) | Floating IP address of KYPO kubernetes cluster instance |
 | <a name="output_kubernetes_certificate"></a> [kubernetes\_certificate](#output\_kubernetes\_certificate) | Public key of Kubernetes user |
 | <a name="output_kubernetes_private_key"></a> [kubernetes\_private\_key](#output\_kubernetes\_private\_key) | Private key of Kubernetes user |
-| <a name="output_node_1_ip"></a> [node\_1\_ip](#output\_node\_1\_ip) | Internal IP of the first node in HA setup |
-| <a name="output_node_2_ip"></a> [node\_2\_ip](#output\_node\_2\_ip) | Internal IP of the second node in HA setup |
-| <a name="output_node_3_ip"></a> [node\_3\_ip](#output\_node\_3\_ip) | Internal IP of the third node in HA setup |
+| <a name="output_node_0_ip"></a> [node\_0\_ip](#output\_node\_0\_ip) | Internal IP of the first node in HA setup |
+| <a name="output_node_1_ip"></a> [node\_1\_ip](#output\_node\_1\_ip) | Internal IP of the second node in HA setup |
+| <a name="output_node_2_ip"></a> [node\_2\_ip](#output\_node\_2\_ip) | Internal IP of the third node in HA setup |
 <!-- END_TF_DOCS -->
