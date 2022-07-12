@@ -25,7 +25,8 @@ write_files:
 
           # no load balancer
           service:
-            enabled: false
+            enabled: true
+            type: ClusterIP
 
           # use host network for directly port listening
           hostNetwork: true
