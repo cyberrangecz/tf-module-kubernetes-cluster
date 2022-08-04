@@ -33,6 +33,7 @@ resource "null_resource" "provision_cluster" {
     user        = "ubuntu"
     private_key = var.private_key
     host        = openstack_networking_floatingip_v2.kubernetes_cluster_fip[0].address
+    timeout     = "20m"
   }
 
   provisioner "remote-exec" {
