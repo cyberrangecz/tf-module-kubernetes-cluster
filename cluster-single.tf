@@ -4,6 +4,7 @@ locals {
     kubernetes_ca_certs  = tls_self_signed_cert.kubernetes_ca_certs
     terraform_user       = tls_private_key.terraform_user
     terraform_user_certs = tls_locally_signed_cert.terraform_user
+    k3s_version          = var.k3s_version
   })
 }
 

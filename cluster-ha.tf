@@ -11,6 +11,7 @@ locals {
     terraform_user       = tls_private_key.terraform_user
     terraform_user_certs = tls_locally_signed_cert.terraform_user
     secret               = var.ha ? random_password.token[0].result : ""
+    k3s_version          = var.k3s_version
   })
   user_data_add = templatefile("${path.module}/templates/cloud-config-add.yml.tpl", {
     kubernetes_ca        = tls_private_key.kubernetes_ca
@@ -19,6 +20,7 @@ locals {
     terraform_user_certs = tls_locally_signed_cert.terraform_user
     secret               = var.ha ? random_password.token[0].result : ""
     first_node           = var.ha ? openstack_compute_instance_v2.node_first[0].access_ip_v4 : ""
+    k3s_version          = var.k3s_version
   })
 }
 

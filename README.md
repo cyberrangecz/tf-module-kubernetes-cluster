@@ -71,6 +71,7 @@ No modules.
 | <a name="input_flavor_name"></a> [flavor\_name](#input\_flavor\_name) | OpenStack flavor used by KYPO kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_ha"></a> [ha](#input\_ha) | Deploy cluster with 3 nodes in HA | `bool` | `false` | no |
 | <a name="input_image_id"></a> [image\_id](#input\_image\_id) | OpenStack image ID used by KYPO kubernetes cluster instance | `string` | n/a | yes |
+| <a name="input_k3s_version"></a> [k3s\_version](#input\_k3s\_version) | Version of k3s distribution | `string` | `"v1.25.3+k3s1"` | no |
 | <a name="input_key_pair"></a> [key\_pair](#input\_key\_pair) | OpenStack keypair name used by KYPO kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_network_id"></a> [network\_id](#input\_network\_id) | Id of OpenStack internal network used by KYPO kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Private key of ubuntu user on KYPO kubernetes cluster instance | `string` | n/a | yes |

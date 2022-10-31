@@ -19,6 +19,12 @@ variable "image_id" {
   description = "OpenStack image ID used by KYPO kubernetes cluster instance"
 }
 
+variable "k3s_version" {
+  type        = string
+  description = "Version of k3s distribution"
+  default     = "v1.25.3+k3s1"
+}
+
 variable "key_pair" {
   type        = string
   description = "OpenStack keypair name used by KYPO kubernetes cluster instance"
