@@ -50,3 +50,9 @@ variable "security_group" {
   type        = string
   description = "OpenStack KYPO head security group"
 }
+
+variable "subnet_name" {
+  type        = string
+  description = "OpenStack subnet name for LB"
+  default     = "kypo-base-subnet"
+}

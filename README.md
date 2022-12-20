@@ -77,6 +77,7 @@ No modules.
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Private key of ubuntu user on KYPO kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_proxy_host"></a> [proxy\_host](#input\_proxy\_host) | FQDN/IP address of proxy-jump host. Set only for HA setup. | `string` | `""` | no |
 | <a name="input_security_group"></a> [security\_group](#input\_security\_group) | OpenStack KYPO head security group | `string` | n/a | yes |
+| <a name="input_subnet_name"></a> [subnet\_name](#input\_subnet\_name) | OpenStack subnet name for LB | `string` | `"kypo-base-subnet"` | no |
 
 ## Outputs
 

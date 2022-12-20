@@ -7,7 +7,7 @@ data "openstack_networking_secgroup_v2" "head_sg" {
 }
 
 data "openstack_networking_subnet_v2" "subnet" {
-  name = "kypo-base-subnet"
+  name = var.subnet_name
 }
 
 resource "openstack_lb_loadbalancer_v2" "lb" {
