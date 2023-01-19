@@ -25,6 +25,10 @@ resource "openstack_compute_instance_v2" "kubernetes_cluster" {
   network {
     uuid = var.network_id
   }
+
+  lifecycle {
+    ignore_changes = [user_data]
+  }
 }
 
 resource "null_resource" "provision_cluster" {

@@ -95,4 +95,8 @@ resource "openstack_compute_instance_v2" "node_add" {
   depends_on = [
     null_resource.provision_first
   ]
+
+  lifecycle {
+    ignore_changes = [user_data]
+  }
 }
