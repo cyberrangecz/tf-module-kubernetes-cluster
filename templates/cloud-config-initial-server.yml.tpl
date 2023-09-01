@@ -12,7 +12,7 @@ runcmd:
   - mkdir -p /var/opt/kypo/kypo-ansible-runner-volumes
   - apt update
   - apt install nfs-common -y
-  - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${k3s_version} K3S_RESOLV_CONF=/run/systemd/resolve/resolv.conf K3S_TOKEN=${secret} INSTALL_K3S_EXEC="server --cluster-init" sh -s -
+  - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${k3s_version} K3S_RESOLV_CONF=/run/systemd/resolve/resolv.conf K3S_TOKEN=${secret} INSTALL_K3S_EXEC="server --cluster-init --disable-apiserver --disable-controller-manager --disable-scheduler --disable-agent" sh -s -
 
 write_files:
   - path: /var/lib/rancher/k3s/server/manifests/traefik-config.yaml

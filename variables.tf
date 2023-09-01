@@ -1,3 +1,15 @@
+variable "agent_count" {
+  type        = number
+  description = "Number of Kubernetes worker nodes"
+  default     = 3
+}
+
+variable "agent_flavor_name" {
+  type        = string
+  description = "OpenStack flavor used by KYPO kubernetes cluster agent instance in HA mode"
+  default     = "standard.medium"
+}
+
 variable "external_network_name" {
   type        = string
   description = "External network name used for floating IP allocation"
@@ -49,6 +61,18 @@ variable "proxy_host" {
 variable "security_group" {
   type        = string
   description = "OpenStack KYPO head security group"
+}
+
+variable "server_count" {
+  type        = number
+  description = "Number of Kubernetes server nodes"
+  default     = 3
+}
+
+variable "server_flavor_name" {
+  type        = string
+  description = "OpenStack flavor used by KYPO kubernetes cluster server instance in HA mode"
+  default     = "standard.large"
 }
 
 variable "subnet_name" {

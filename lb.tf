@@ -37,25 +37,14 @@ resource "openstack_lb_members_v2" "members_80" {
   count   = var.ha ? 1 : 0
   pool_id = openstack_lb_pool_v2.pool_80[0].id
 
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-80-1"
-    address       = openstack_compute_instance_v2.node_first[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 80
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-80-2"
-    address       = openstack_compute_instance_v2.node_add[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 80
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-80-3"
-    address       = openstack_compute_instance_v2.node_add[1].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 80
+  dynamic "member" {
+    for_each = openstack_compute_instance_v2.node_agent
+    content {
+      name          = "${member.value.name}-80"
+      address       = member.value.access_ip_v4
+      subnet_id     = data.openstack_networking_subnet_v2.subnet.id
+      protocol_port = 80
+    }
   }
 }
 
@@ -89,25 +78,14 @@ resource "openstack_lb_members_v2" "members_443" {
   count   = var.ha ? 1 : 0
   pool_id = openstack_lb_pool_v2.pool_443[0].id
 
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-443-1"
-    address       = openstack_compute_instance_v2.node_first[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 443
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-443-2"
-    address       = openstack_compute_instance_v2.node_add[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 443
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-443-3"
-    address       = openstack_compute_instance_v2.node_add[1].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 443
+  dynamic "member" {
+    for_each = openstack_compute_instance_v2.node_agent
+    content {
+      name          = "${member.value.name}-443"
+      address       = member.value.access_ip_v4
+      subnet_id     = data.openstack_networking_subnet_v2.subnet.id
+      protocol_port = 443
+    }
   }
 }
 
@@ -141,25 +119,14 @@ resource "openstack_lb_members_v2" "members_6443" {
   count   = var.ha ? 1 : 0
   pool_id = openstack_lb_pool_v2.pool_6443[0].id
 
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-6443-1"
-    address       = openstack_compute_instance_v2.node_first[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 6443
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-6443-2"
-    address       = openstack_compute_instance_v2.node_add[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 6443
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-6443-3"
-    address       = openstack_compute_instance_v2.node_add[1].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 6443
+  dynamic "member" {
+    for_each = openstack_compute_instance_v2.node_agent
+    content {
+      name          = "${member.value.name}-6443"
+      address       = member.value.access_ip_v4
+      subnet_id     = data.openstack_networking_subnet_v2.subnet.id
+      protocol_port = 6443
+    }
   }
 }
 
@@ -193,25 +160,14 @@ resource "openstack_lb_members_v2" "members_515" {
   count   = var.ha ? 1 : 0
   pool_id = openstack_lb_pool_v2.pool_515[0].id
 
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-515-1"
-    address       = openstack_compute_instance_v2.node_first[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 515
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-515-2"
-    address       = openstack_compute_instance_v2.node_add[0].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 515
-  }
-
-  member {
-    name          = "${terraform.workspace}-kubernetes-cluster-515-3"
-    address       = openstack_compute_instance_v2.node_add[1].access_ip_v4
-    subnet_id     = data.openstack_networking_subnet_v2.subnet.id
-    protocol_port = 515
+  dynamic "member" {
+    for_each = openstack_compute_instance_v2.node_agent
+    content {
+      name          = "${member.value.name}-515"
+      address       = member.value.access_ip_v4
+      subnet_id     = data.openstack_networking_subnet_v2.subnet.id
+      protocol_port = 515
+    }
   }
 }
 

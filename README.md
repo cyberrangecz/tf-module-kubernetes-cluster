@@ -26,11 +26,12 @@ No modules.
 |------|------|
 | [local_file.kubectl_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [null_resource.provision_cluster](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-| [null_resource.provision_first](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+| [null_resource.provision_initial_server](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [openstack_compute_floatingip_associate_v2.kubernetes_cluster_fip_association](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_floatingip_associate_v2) | resource |
 | [openstack_compute_instance_v2.kubernetes_cluster](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
-| [openstack_compute_instance_v2.node_add](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
-| [openstack_compute_instance_v2.node_first](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
+| [openstack_compute_instance_v2.node_agent](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
+| [openstack_compute_instance_v2.node_initial_server](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
+| [openstack_compute_instance_v2.node_server](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_instance_v2) | resource |
 | [openstack_compute_servergroup_v2.server_group](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/compute_servergroup_v2) | resource |
 | [openstack_lb_listener_v2.listener_443](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
 | [openstack_lb_listener_v2.listener_515](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/lb_listener_v2) | resource |
@@ -60,13 +61,16 @@ No modules.
 | [openstack_networking_secgroup_v2.head_sg](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/data-sources/networking_secgroup_v2) | data source |
 | [openstack_networking_subnet_v2.subnet](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/data-sources/networking_subnet_v2) | data source |
 | [template_file.cloud_config](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
-| [template_file.cloud_config_add](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
-| [template_file.cloud_config_first](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.cloud_config_agent](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.cloud_config_initial_server](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+| [template_file.cloud_config_server](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_agent_count"></a> [agent\_count](#input\_agent\_count) | Number of Kubernetes worker nodes | `number` | `3` | no |
+| <a name="input_agent_flavor_name"></a> [agent\_flavor\_name](#input\_agent\_flavor\_name) | OpenStack flavor used by KYPO kubernetes cluster agent instance in HA mode | `string` | `"standard.medium"` | no |
 | <a name="input_external_network_name"></a> [external\_network\_name](#input\_external\_network\_name) | External network name used for floating IP allocation | `string` | n/a | yes |
 | <a name="input_flavor_name"></a> [flavor\_name](#input\_flavor\_name) | OpenStack flavor used by KYPO kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_ha"></a> [ha](#input\_ha) | Deploy cluster with 3 nodes in HA | `bool` | `false` | no |
@@ -77,16 +81,18 @@ No modules.
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Private key of ubuntu user on KYPO kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_proxy_host"></a> [proxy\_host](#input\_proxy\_host) | FQDN/IP address of proxy-jump host. Set only for HA setup. | `string` | `""` | no |
 | <a name="input_security_group"></a> [security\_group](#input\_security\_group) | OpenStack KYPO head security group | `string` | n/a | yes |
+| <a name="input_server_count"></a> [server\_count](#input\_server\_count) | Number of Kubernetes server nodes | `number` | `3` | no |
+| <a name="input_server_flavor_name"></a> [server\_flavor\_name](#input\_server\_flavor\_name) | OpenStack flavor used by KYPO kubernetes cluster server instance in HA mode | `string` | `"standard.large"` | no |
 | <a name="input_subnet_name"></a> [subnet\_name](#input\_subnet\_name) | OpenStack subnet name for LB | `string` | `"kypo-base-subnet"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| <a name="output_agent_ip"></a> [agent\_ip](#output\_agent\_ip) | Internal IPs of the agent nodes in HA setup |
 | <a name="output_cluster_ip"></a> [cluster\_ip](#output\_cluster\_ip) | Floating IP address of KYPO kubernetes cluster instance |
 | <a name="output_kubernetes_certificate"></a> [kubernetes\_certificate](#output\_kubernetes\_certificate) | Public key of Kubernetes user |
 | <a name="output_kubernetes_private_key"></a> [kubernetes\_private\_key](#output\_kubernetes\_private\_key) | Private key of Kubernetes user |
 | <a name="output_node_0_ip"></a> [node\_0\_ip](#output\_node\_0\_ip) | Internal IP of the first node in HA setup |
-| <a name="output_node_1_ip"></a> [node\_1\_ip](#output\_node\_1\_ip) | Internal IP of the second node in HA setup |
-| <a name="output_node_2_ip"></a> [node\_2\_ip](#output\_node\_2\_ip) | Internal IP of the third node in HA setup |
+| <a name="output_server_ip"></a> [server\_ip](#output\_server\_ip) | Internal IPs of the server nodes in HA setup |
 <!-- END_TF_DOCS -->
