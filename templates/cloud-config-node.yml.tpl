@@ -57,3 +57,7 @@ write_files:
                 - NET_BIND_SERVICE
             runAsNonRoot: false
             runAsUser: 0
+
+sysctl:
+  fs.inotify.max_user_instances: 8192
+  fs.inotify.max_user_watches: 524288
