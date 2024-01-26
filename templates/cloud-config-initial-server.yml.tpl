@@ -46,7 +46,8 @@ write_files:
               expose: true
               protocol: TCP
               exposePort: 80
-              redirectTo: websecure
+              redirectTo:
+                port: websecure
             websecure:
               port: 443
               expose: true
@@ -54,11 +55,11 @@ write_files:
               exposePort: 443
               tls:
                 enable: true
-
-          rollingUpdate:
-            maxUnavailable: 1
-            maxSurge: null
-
+          updateStrategy:
+            type: RollingUpdate
+            rollingUpdate:
+              maxUnavailable: 1
+              maxSurge: null
           # run as root to 80 and 443 port listen permission
           securityContext:
             capabilities:
