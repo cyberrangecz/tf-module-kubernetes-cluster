@@ -17,13 +17,25 @@ resource "openstack_compute_instance_v2" "kubernetes_cluster" {
   count           = !var.ha ? 1 : 0
   name            = "${terraform.workspace}-kubernetes-cluster"
   flavor_name     = var.flavor_name
-  image_id        = var.image_id
+  image_id        = var.os_volume ? null : var.image_id
   key_pair        = var.key_pair
   user_data       = data.template_file.cloud_config[0].rendered
   security_groups = [var.security_group]
 
   network {
     uuid = var.network_id
+  }
+
+  dynamic "block_device" {
+    for_each = var.os_volume ? [1] : []
+    content {
+      uuid                  = var.image_id
+      source_type           = "image"
+      volume_size           = var.os_volume_size
+      boot_index            = 0
+      destination_type      = "volume"
+      delete_on_termination = true
+    }
   }
 
   lifecycle {

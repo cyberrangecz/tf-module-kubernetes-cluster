@@ -47,6 +47,16 @@ variable "network_id" {
   description = "Id of OpenStack internal network used by KYPO kubernetes cluster instance"
 }
 
+variable "os_volume" {
+  type    = bool
+  default = false
+}
+
+variable "os_volume_size" {
+  type    = number
+  default = 80
+}
+
 variable "private_key" {
   type        = string
   description = "Private key of ubuntu user on KYPO kubernetes cluster instance"
