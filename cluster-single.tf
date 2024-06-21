@@ -13,17 +13,29 @@ data "template_file" "cloud_config" {
   template = local.user_data
 }
 
+data "openstack_networking_secgroup_v2" "sg" {
+  count = !var.ha ? 1 : 0
+  name  = var.security_group
+}
+
+resource "openstack_networking_port_v2" "port" {
+  count              = !var.ha ? 1 : 0
+  name               = "${terraform.workspace}-kubernetes-cluster"
+  network_id         = var.network_id
+  security_group_ids = [data.openstack_networking_secgroup_v2.sg[0].id]
+  admin_state_up     = "true"
+}
+
 resource "openstack_compute_instance_v2" "kubernetes_cluster" {
-  count           = !var.ha ? 1 : 0
-  name            = "${terraform.workspace}-kubernetes-cluster"
-  flavor_name     = var.flavor_name
-  image_id        = var.os_volume ? null : var.image_id
-  key_pair        = var.key_pair
-  user_data       = data.template_file.cloud_config[0].rendered
-  security_groups = [var.security_group]
+  count       = !var.ha ? 1 : 0
+  name        = "${terraform.workspace}-kubernetes-cluster"
+  flavor_name = var.flavor_name
+  image_id    = var.os_volume ? null : var.image_id
+  key_pair    = var.key_pair
+  user_data   = data.template_file.cloud_config[0].rendered
 
   network {
-    uuid = var.network_id
+    port = openstack_networking_port_v2.port[0].id
   }
 
   dynamic "block_device" {
@@ -60,7 +72,7 @@ resource "null_resource" "provision_cluster" {
   }
 
   depends_on = [
-    openstack_compute_floatingip_associate_v2.kubernetes_cluster_fip_association
+    openstack_networking_floatingip_associate_v2.kubernetes_cluster_fip_association
   ]
 }
 
@@ -69,8 +81,8 @@ resource "openstack_networking_floatingip_v2" "kubernetes_cluster_fip" {
   pool  = var.external_network_name
 }
 
-resource "openstack_compute_floatingip_associate_v2" "kubernetes_cluster_fip_association" {
+resource "openstack_networking_floatingip_associate_v2" "kubernetes_cluster_fip_association" {
   count       = !var.ha ? 1 : 0
   floating_ip = openstack_networking_floatingip_v2.kubernetes_cluster_fip[0].address
-  instance_id = openstack_compute_instance_v2.kubernetes_cluster[0].id
+  port_id     = openstack_networking_port_v2.port[0].id
 }
