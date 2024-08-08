@@ -1,18 +1,3 @@
-locals {
-  user_data = templatefile("${path.module}/templates/cloud-config.yml.tpl", {
-    kubernetes_ca        = tls_private_key.kubernetes_ca
-    kubernetes_ca_certs  = tls_self_signed_cert.kubernetes_ca_certs
-    terraform_user       = tls_private_key.terraform_user
-    terraform_user_certs = tls_locally_signed_cert.terraform_user
-    k3s_version          = var.k3s_version
-  })
-}
-
-data "template_file" "cloud_config" {
-  count    = !var.ha ? 1 : 0
-  template = local.user_data
-}
-
 data "openstack_networking_secgroup_v2" "sg" {
   count = !var.ha ? 1 : 0
   name  = var.security_group
@@ -32,7 +17,13 @@ resource "openstack_compute_instance_v2" "kubernetes_cluster" {
   flavor_name = var.flavor_name
   image_id    = var.os_volume ? null : var.image_id
   key_pair    = var.key_pair
-  user_data   = data.template_file.cloud_config[0].rendered
+  user_data = templatefile("${path.module}/templates/cloud-config.yml.tpl", {
+    kubernetes_ca        = tls_private_key.kubernetes_ca
+    kubernetes_ca_certs  = tls_self_signed_cert.kubernetes_ca_certs
+    terraform_user       = tls_private_key.terraform_user
+    terraform_user_certs = tls_locally_signed_cert.terraform_user
+    k3s_version          = var.k3s_version
+  })
 
   network {
     port = openstack_networking_port_v2.port[0].id
