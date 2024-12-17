@@ -67,29 +67,29 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_agent_count"></a> [agent\_count](#input\_agent\_count) | Number of Kubernetes worker nodes | `number` | `3` | no |
-| <a name="input_agent_flavor_name"></a> [agent\_flavor\_name](#input\_agent\_flavor\_name) | OpenStack flavor used by KYPO kubernetes cluster agent instance in HA mode | `string` | `"standard.medium"` | no |
+| <a name="input_agent_flavor_name"></a> [agent\_flavor\_name](#input\_agent\_flavor\_name) | OpenStack flavor used by kubernetes cluster agent instance in HA mode | `string` | `"standard.medium"` | no |
 | <a name="input_external_network_name"></a> [external\_network\_name](#input\_external\_network\_name) | External network name used for floating IP allocation | `string` | n/a | yes |
-| <a name="input_flavor_name"></a> [flavor\_name](#input\_flavor\_name) | OpenStack flavor used by KYPO kubernetes cluster instance | `string` | n/a | yes |
+| <a name="input_flavor_name"></a> [flavor\_name](#input\_flavor\_name) | OpenStack flavor used by kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_ha"></a> [ha](#input\_ha) | Deploy cluster with 3 nodes in HA | `bool` | `false` | no |
-| <a name="input_image_id"></a> [image\_id](#input\_image\_id) | OpenStack image ID used by KYPO kubernetes cluster instance | `string` | n/a | yes |
-| <a name="input_k3s_version"></a> [k3s\_version](#input\_k3s\_version) | Version of k3s distribution | `string` | `"v1.27.9+k3s1"` | no |
-| <a name="input_key_pair"></a> [key\_pair](#input\_key\_pair) | OpenStack keypair name used by KYPO kubernetes cluster instance | `string` | n/a | yes |
-| <a name="input_network_id"></a> [network\_id](#input\_network\_id) | Id of OpenStack internal network used by KYPO kubernetes cluster instance | `string` | n/a | yes |
+| <a name="input_image_id"></a> [image\_id](#input\_image\_id) | OpenStack image ID used by kubernetes cluster instance | `string` | n/a | yes |
+| <a name="input_k3s_version"></a> [k3s\_version](#input\_k3s\_version) | Version of k3s distribution | `string` | `"v1.31.4+k3s1"` | no |
+| <a name="input_key_pair"></a> [key\_pair](#input\_key\_pair) | OpenStack keypair name used by kubernetes cluster instance | `string` | n/a | yes |
+| <a name="input_network_id"></a> [network\_id](#input\_network\_id) | Id of OpenStack internal network used by kubernetes cluster instance | `string` | n/a | yes |
 | <a name="input_os_volume"></a> [os\_volume](#input\_os\_volume) | n/a | `bool` | `false` | no |
 | <a name="input_os_volume_size"></a> [os\_volume\_size](#input\_os\_volume\_size) | n/a | `number` | `80` | no |
-| <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Private key of ubuntu user on KYPO kubernetes cluster instance | `string` | n/a | yes |
-| <a name="input_proxy_host"></a> [proxy\_host](#input\_proxy\_host) | FQDN/IP address of proxy-jump host. Set only for HA setup. | `string` | `""` | no |
-| <a name="input_security_group"></a> [security\_group](#input\_security\_group) | OpenStack KYPO head security group | `string` | n/a | yes |
+| <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Private key of ubuntu user on kubernetes cluster instance | `string` | n/a | yes |
+| <a name="input_proxy_host"></a> [proxy\_host](#input\_proxy\_host) | FQDN/IP address of proxy jump host. Set only for HA setup. | `string` | `""` | no |
+| <a name="input_security_group"></a> [security\_group](#input\_security\_group) | OpenStack head security group | `string` | n/a | yes |
 | <a name="input_server_count"></a> [server\_count](#input\_server\_count) | Number of Kubernetes server nodes | `number` | `3` | no |
-| <a name="input_server_flavor_name"></a> [server\_flavor\_name](#input\_server\_flavor\_name) | OpenStack flavor used by KYPO kubernetes cluster server instance in HA mode | `string` | `"standard.large"` | no |
-| <a name="input_subnet_name"></a> [subnet\_name](#input\_subnet\_name) | OpenStack subnet name for LB | `string` | `"kypo-base-subnet"` | no |
+| <a name="input_server_flavor_name"></a> [server\_flavor\_name](#input\_server\_flavor\_name) | OpenStack flavor used by kubernetes cluster server instance in HA mode | `string` | `"standard.large"` | no |
+| <a name="input_subnet_name"></a> [subnet\_name](#input\_subnet\_name) | OpenStack subnet name for LB | `string` | `"base-subnet"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_agent_ip"></a> [agent\_ip](#output\_agent\_ip) | Internal IPs of the agent nodes in HA setup |
-| <a name="output_cluster_ip"></a> [cluster\_ip](#output\_cluster\_ip) | Floating IP address of KYPO kubernetes cluster instance |
+| <a name="output_cluster_ip"></a> [cluster\_ip](#output\_cluster\_ip) | Floating IP address of kubernetes cluster instance |
 | <a name="output_kubernetes_certificate"></a> [kubernetes\_certificate](#output\_kubernetes\_certificate) | Public key of Kubernetes user |
 | <a name="output_kubernetes_private_key"></a> [kubernetes\_private\_key](#output\_kubernetes\_private\_key) | Private key of Kubernetes user |
 | <a name="output_node_0_ip"></a> [node\_0\_ip](#output\_node\_0\_ip) | Internal IP of the first node in HA setup |

@@ -6,7 +6,7 @@ variable "agent_count" {
 
 variable "agent_flavor_name" {
   type        = string
-  description = "OpenStack flavor used by KYPO kubernetes cluster agent instance in HA mode"
+  description = "OpenStack flavor used by kubernetes cluster agent instance in HA mode"
   default     = "standard.medium"
 }
 
@@ -17,7 +17,7 @@ variable "external_network_name" {
 
 variable "flavor_name" {
   type        = string
-  description = "OpenStack flavor used by KYPO kubernetes cluster instance"
+  description = "OpenStack flavor used by kubernetes cluster instance"
 }
 
 variable "ha" {
@@ -28,23 +28,23 @@ variable "ha" {
 
 variable "image_id" {
   type        = string
-  description = "OpenStack image ID used by KYPO kubernetes cluster instance"
+  description = "OpenStack image ID used by kubernetes cluster instance"
 }
 
 variable "k3s_version" {
   type        = string
   description = "Version of k3s distribution"
-  default     = "v1.27.9+k3s1"
+  default     = "v1.31.4+k3s1"
 }
 
 variable "key_pair" {
   type        = string
-  description = "OpenStack keypair name used by KYPO kubernetes cluster instance"
+  description = "OpenStack keypair name used by kubernetes cluster instance"
 }
 
 variable "network_id" {
   type        = string
-  description = "Id of OpenStack internal network used by KYPO kubernetes cluster instance"
+  description = "Id of OpenStack internal network used by kubernetes cluster instance"
 }
 
 variable "os_volume" {
@@ -59,18 +59,18 @@ variable "os_volume_size" {
 
 variable "private_key" {
   type        = string
-  description = "Private key of ubuntu user on KYPO kubernetes cluster instance"
+  description = "Private key of ubuntu user on kubernetes cluster instance"
 }
 
 variable "proxy_host" {
   type        = string
-  description = "FQDN/IP address of proxy-jump host. Set only for HA setup."
+  description = "FQDN/IP address of proxy jump host. Set only for HA setup."
   default     = ""
 }
 
 variable "security_group" {
   type        = string
-  description = "OpenStack KYPO head security group"
+  description = "OpenStack head security group"
 }
 
 variable "server_count" {
@@ -81,12 +81,12 @@ variable "server_count" {
 
 variable "server_flavor_name" {
   type        = string
-  description = "OpenStack flavor used by KYPO kubernetes cluster server instance in HA mode"
+  description = "OpenStack flavor used by kubernetes cluster server instance in HA mode"
   default     = "standard.large"
 }
 
 variable "subnet_name" {
   type        = string
   description = "OpenStack subnet name for LB"
-  default     = "kypo-base-subnet"
+  default     = "base-subnet"
 }

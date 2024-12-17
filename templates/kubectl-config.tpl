@@ -7,7 +7,7 @@ clusters:
 contexts:
 - context:
     cluster: ${workspace}
-    namespace: kypo
+    namespace: crczp
     user: ${workspace}
   name: ${workspace}
 current-context: ${workspace}

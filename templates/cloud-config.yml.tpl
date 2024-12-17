@@ -9,12 +9,15 @@ runcmd:
   - echo '${base64encode(kubernetes_ca_certs[2].cert_pem)}' | base64 -d > /var/lib/rancher/k3s/server/tls/request-header-ca.crt
   - echo '${base64encode(terraform_user.private_key_pem)}' | base64 -d > /var/lib/rancher/k3s/server/tls/client-terraform-user.key
   - echo '${base64encode(terraform_user_certs.cert_pem)}' | base64 -d > /var/lib/rancher/k3s/server/tls/client-terraform-user.crt
-  - mkdir -p /var/opt/kypo/kypo-ansible-runner-volumes
   - apt update
   - apt install nfs-common -y
   - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${k3s_version} sh -s -
 
 write_files:
+  - path: /etc/sysctl.d/99-cloud-init.conf
+    content: |
+      fs.inotify.max_user_instances=8192
+      fs.inotify.max_user_watches=524288
   - path: /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
     content: |
       apiVersion: helm.cattle.io/v1
@@ -43,18 +46,16 @@ write_files:
           ports:
             web:
               port: 80
-              expose: true
               protocol: TCP
-              exposePort: 80
+              exposedPort: 80
               redirectTo:
                 port: websecure
             websecure:
               port: 443
-              expose: true
               protocol: TCP
-              exposePort: 443
+              exposedPort: 443
               tls:
-                enable: true
+                enabled: true
           updateStrategy:
             type: RollingUpdate
             rollingUpdate:
@@ -67,7 +68,3 @@ write_files:
                 - NET_BIND_SERVICE
             runAsNonRoot: false
             runAsUser: 0
-
-sysctl:
-  fs.inotify.max_user_instances: 8192
-  fs.inotify.max_user_watches: 524288

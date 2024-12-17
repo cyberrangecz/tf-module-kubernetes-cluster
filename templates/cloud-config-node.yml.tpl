@@ -1,11 +1,14 @@
 #cloud-config
 runcmd:
-  - mkdir -p /var/opt/kypo/kypo-ansible-runner-volumes
   - apt update
   - apt install nfs-common -y
   - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${k3s_version} K3S_RESOLV_CONF=/run/systemd/resolve/resolv.conf K3S_TOKEN=${secret} INSTALL_K3S_EXEC="${k3s_exec_options}" K3S_URL=https://${first_node}:6443 sh -s -
 
 write_files:
+  - path: /etc/sysctl.d/99-cloud-init.conf
+    content: |
+      fs.inotify.max_user_instances=8192
+      fs.inotify.max_user_watches=524288
   - path: /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
     content: |
       apiVersion: helm.cattle.io/v1
@@ -58,7 +61,3 @@ write_files:
                 - NET_BIND_SERVICE
             runAsNonRoot: false
             runAsUser: 0
-
-sysctl:
-  fs.inotify.max_user_instances: 8192
-  fs.inotify.max_user_watches: 524288

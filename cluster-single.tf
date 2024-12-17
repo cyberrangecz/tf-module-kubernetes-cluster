@@ -63,7 +63,8 @@ resource "null_resource" "provision_cluster" {
   }
 
   depends_on = [
-    openstack_networking_floatingip_associate_v2.kubernetes_cluster_fip_association
+    openstack_networking_floatingip_associate_v2.kubernetes_cluster_fip_association,
+    openstack_compute_instance_v2.kubernetes_cluster
   ]
 }
 

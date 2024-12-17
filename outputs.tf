@@ -1,6 +1,6 @@
 output "cluster_ip" {
   value       = var.ha ? openstack_lb_loadbalancer_v2.lb[0].vip_address : openstack_networking_floatingip_v2.kubernetes_cluster_fip[0].address
-  description = "Floating IP address of KYPO kubernetes cluster instance"
+  description = "Floating IP address of kubernetes cluster instance"
 }
 
 output "kubernetes_private_key" {
