@@ -91,6 +91,7 @@ No modules.
 | <a name="output_agent_ip"></a> [agent\_ip](#output\_agent\_ip) | Internal IPs of the agent nodes in HA setup |
 | <a name="output_cluster_ip"></a> [cluster\_ip](#output\_cluster\_ip) | Floating IP address of kubernetes cluster instance |
 | <a name="output_kubernetes_certificate"></a> [kubernetes\_certificate](#output\_kubernetes\_certificate) | Public key of Kubernetes user |
+| <a name="output_kubernetes_cluster_id"></a> [kubernetes\_cluster\_id](#output\_kubernetes\_cluster\_id) | Instance ID of the first node in HA setup |
 | <a name="output_kubernetes_private_key"></a> [kubernetes\_private\_key](#output\_kubernetes\_private\_key) | Private key of Kubernetes user |
 | <a name="output_node_0_ip"></a> [node\_0\_ip](#output\_node\_0\_ip) | Internal IP of the first node in HA setup |
 | <a name="output_server_ip"></a> [server\_ip](#output\_server\_ip) | Internal IPs of the server nodes in HA setup |

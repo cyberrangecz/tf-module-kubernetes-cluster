@@ -13,6 +13,11 @@ output "kubernetes_certificate" {
   description = "Public key of Kubernetes user"
 }
 
+output "kubernetes_cluster_id" {
+  value       = var.ha ? null : openstack_compute_instance_v2.kubernetes_cluster[0].id
+  description = "Instance ID of the first node in HA setup"
+}
+
 output "node_0_ip" {
   value       = var.ha ? openstack_compute_instance_v2.node_initial_server[0].access_ip_v4 : null
   description = "Internal IP of the first node in HA setup"
